@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">PetsForAll</string>
+    <string name="label_email">E-mail:</string>
+    <string name="label_password">Senha:</string>
+    <string name="label_confirmation">Confirmação da senha:</string>
+    <string name="button_signin">Entrar</string>
+    <string name="button_signup">Criar conta</string>
+    <string name="button_create">Criar</string>
+    <string name="donate">Doar</string>
+    <string name="adopt">Adotar</string>
+    <string name="profile">Perfil</string>
+    <string name="label_name">Nome:</string>
+    <string name="label_age">Idade:</string>
+    <string name="label_race">Raça:</string>
+    <string name="label_gender">Gênero</string>
+    <string name="male">Macho</string>
+    <string name="female">Fêmea</string>
+    <string name="species">Espécie</string>
+    <string name="cat">Gato</string>
+    <string name="dog">Cão</string>
+    <string name="label_description">Descrição</string>
+    <string name="edit">Editar</string>
+    <string name="label_dogs">Cães:</string>
+    <string name="label_cats">Gatos:</string>
+    <string name="button_save">Salvar</string>
+    <string name="label_phone">Telefone:</string>
+    <string name="search_for">Procurar por</string>
+    <string name="label_distance">Distância:</string>
+    <string name="adoption_setting">Configuração de adoção</string>
+    <string name="contact">Contato</string>
+    <string name="logout">Sair</string>
 </resources>
