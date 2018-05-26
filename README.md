@@ -18,3 +18,7 @@ Esta versão é um protótipo que será utilizado como trabalho final da discipl
 - RF7: O usuário deve ser capaz de editar os pets cadastrados por ele;
 - RF8: O usuário deve ser capaz de excluir os pets cadastrados por ele;
 - RF9: O usuário deve ser capaz de alterar as configurações de qual tipo de pet ele deseja adotar (cães, gatos ou nenhum, caso esteja no aplicativo apenas para doar) e do raio de busca (distância entre doador e interessado).
+
+### Links:
+
+- Logo: https://www.flaticon.com/free-icon/pet-hotel-sign-with-a-dog-and-a-cat-under-a-roof-line_35097#term=pets&page=1&position=53
