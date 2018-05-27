@@ -44,4 +44,5 @@
         completions."
     </string>
     <string name="button_recover_password">Esqueci minha senha</string>
+    <string name="not_implemented">Funcionalidade não implementada nesta versão do aplicativo.</string>
 </resources>
