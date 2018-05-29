@@ -6,35 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".Home">
 
-    <android.support.v7.widget.Toolbar
+    <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#997733"
+        android:id="@+id/tabHome"
+        android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:id="@+id/toolbar"/>
-    
-    <fragment
-        android:id="@+id/fragment2"
-        android:name="com.example.dell.petsforall.EditProfileFragment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_edit_profile" />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="com.example.dell.petsforall.EditProfileFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="63dp"
-        tools:layout="@layout/fragment_edit_profile" />
+    </android.support.design.widget.TabLayout>
+    
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/pagerHome">
+
+    </android.support.v4.view.ViewPager>
 </RelativeLayout>
