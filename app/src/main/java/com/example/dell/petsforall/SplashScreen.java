@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import io.realm.Realm;
+
 public class SplashScreen extends AppCompatActivity {
     private static final int SPLASH_SCREEN_TIME = 3000;
 
@@ -12,6 +14,8 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        Realm.init(getApplicationContext());
 
         new Handler().postDelayed(new Runnable() {
             @Override
