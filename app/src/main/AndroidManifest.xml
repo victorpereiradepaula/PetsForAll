@@ -24,8 +24,8 @@
         <activity android:name=".Login" />
         <activity android:name=".CreateAccount" />
         <activity android:name=".Home" />
-        <activity android:name=".NotImplemented" />
-        <activity android:name=".Adopt"></activity>
+        <activity android:name=".Adopt" />
+        <activity android:name=".AddPet"></activity>
     </application>
 
 </manifest>
