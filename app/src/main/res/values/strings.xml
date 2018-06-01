@@ -18,14 +18,14 @@
     <string name="species">Espécie</string>
     <string name="cat">Gato</string>
     <string name="dog">Cão</string>
-    <string name="label_description">Descrição</string>
+    <string name="label_description">Descrição:</string>
     <string name="edit">Editar</string>
     <string name="label_dogs">Cães:</string>
     <string name="label_cats">Gatos:</string>
     <string name="button_save">Salvar</string>
     <string name="label_phone">Telefone:</string>
-    <string name="search_for">Procurar por</string>
-    <string name="label_distance">Distância:</string>
+    <string name="search_for">Mostrat-me</string>
+    <string name="label_distance">Distância máxima</string>
     <string name="adoption_setting">Configuração de adoção</string>
     <string name="contact">Contato</string>
     <string name="logout">Sair</string>
