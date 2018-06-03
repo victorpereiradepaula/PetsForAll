@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
     private Button loginButton;
@@ -40,8 +41,7 @@ public class Login extends AppCompatActivity {
         recoverPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, NotImplemented.class);
-                startActivity(intent);
+                Toast.makeText(Login.this, "Em breve!", Toast.LENGTH_LONG).show();
             }
         });
     }
