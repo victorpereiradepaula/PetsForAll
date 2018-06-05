@@ -1,8 +1,6 @@
 package com.example.dell.petsforall.Data.Database;
 
-import android.support.annotation.NonNull;
-
-import com.example.dell.petsforall.Data.Entitie.RealmUser;
+import com.example.dell.petsforall.Data.Entity.RealmUser;
 import com.example.dell.petsforall.Domain.Models.User;
 
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ import io.realm.RealmResults;
  * Created by renanbenattidias on 01/06/18.
  */
 
-interface RealmDatabase {
+interface UserDatabaseInterface {
     boolean create(User user);
     boolean delete(Long id);
     List<User> list();
@@ -24,11 +22,11 @@ interface RealmDatabase {
     User findUserBy(Long id);
 }
 
-public class UserDatabase implements RealmDatabase {
+public class UserDatabase implements UserDatabaseInterface {
 
     private UserDatabase() {}
 
-    public static RealmDatabase shared = new UserDatabase();
+    public static UserDatabaseInterface shared = new UserDatabase();
 
     @Override
     public boolean create(User user) {

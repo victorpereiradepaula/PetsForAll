@@ -7,6 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.dell.petsforall.Data.Entity.AgeUnit;
+import com.example.dell.petsforall.Data.Entity.PetlAge;
+import com.example.dell.petsforall.Data.Entity.Gender;
+import com.example.dell.petsforall.Domain.Models.Pet;
+
 public class Login extends AppCompatActivity {
     private Button loginButton;
     private Button createAccountButton;
@@ -44,5 +49,9 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(Login.this, "Em breve!", Toast.LENGTH_LONG).show();
             }
         });
+
+        Pet pet = new Pet("Dog", "A dog", Gender.M, "Dogus dog", "Dogga", new PetlAge(12, AgeUnit.Days));
+
+
     }
 }

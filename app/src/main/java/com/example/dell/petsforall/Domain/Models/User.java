@@ -1,6 +1,6 @@
 package com.example.dell.petsforall.Domain.Models;
 
-import com.example.dell.petsforall.Data.Entitie.RealmUser;
+import com.example.dell.petsforall.Data.Entity.RealmUser;
 
 /**
  * Created by renanbenattidias on 01/06/18.
