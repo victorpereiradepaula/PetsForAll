@@ -9,10 +9,10 @@ public class RealmPet extends RealmObject {
     public Long id;
     public String name;
     public String description;
-    public Gender gender;
+    public String gender;
     public String species;
     public String breed;
-    public PetlAge age;
+    public RealmAge realmAge;
 
 //    RealmUser owner;
 }

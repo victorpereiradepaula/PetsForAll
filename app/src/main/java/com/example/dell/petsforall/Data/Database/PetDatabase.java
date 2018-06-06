@@ -1,7 +1,7 @@
 package com.example.dell.petsforall.Data.Database;
 
+import com.example.dell.petsforall.Data.Entity.RealmAge;
 import com.example.dell.petsforall.Data.Entity.RealmPet;
-import com.example.dell.petsforall.Data.Entity.RealmUser;
 import com.example.dell.petsforall.Domain.Models.Pet;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ interface PetDatabaseInterface {
 
 public class PetDatabase implements PetDatabaseInterface {
 
-    public static PetDatabaseInterface shared = new PetDatabase();
+    public static PetDatabase shared = new PetDatabase();
 
     private PetDatabase() {}
 
@@ -39,10 +39,15 @@ public class PetDatabase implements PetDatabaseInterface {
         // TODO make a semi-constructor method later...
         realmPet.name = pet.name;
         realmPet.description = pet.description;
-        realmPet.gender = pet.gender;
+        realmPet.gender = pet.gender.toString();
         realmPet.species = pet.species;
         realmPet.breed = pet.breed;
-        realmPet.age = pet.age;
+
+        RealmAge realmAge = realm.createObject(RealmAge.class);
+        realmAge.age = pet.age.age;
+        realmAge.ageUnit = pet.age.ageUnit.toString();
+
+        realmPet.realmAge = realmAge;
 
         realm.commitTransaction();
         realm.close();
@@ -101,11 +106,12 @@ public class PetDatabase implements PetDatabaseInterface {
         realm.beginTransaction();
 
         realmPet.name = pet.name;
-        realmPet.age = pet.age;
         realmPet.breed = pet.breed;
         realmPet.description = pet.description;
-        realmPet.gender = pet.gender;
+        realmPet.gender = pet.gender.toString();
         realmPet.species = pet.species;
+        realmPet.realmAge.age = pet.age.age;
+        realmPet.realmAge.ageUnit = pet.age.ageUnit.toString();
 
         realm.commitTransaction();
     }
