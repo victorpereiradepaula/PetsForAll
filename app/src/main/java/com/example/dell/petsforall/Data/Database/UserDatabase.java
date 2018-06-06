@@ -1,6 +1,9 @@
 package com.example.dell.petsforall.Data.Database;
 
+import com.example.dell.petsforall.Data.Entity.RealmAge;
+import com.example.dell.petsforall.Data.Entity.RealmPet;
 import com.example.dell.petsforall.Data.Entity.RealmUser;
+import com.example.dell.petsforall.Domain.Models.Pet;
 import com.example.dell.petsforall.Domain.Models.User;
 
 import java.util.ArrayList;
@@ -15,7 +18,8 @@ import io.realm.RealmResults;
  */
 
 interface UserDatabaseInterface {
-    boolean create(User user);
+//    boolean create(User user);
+    void create(final User user);
     boolean delete(Long id);
     List<User> list();
     void update(User user) throws Exception;
@@ -26,25 +30,43 @@ public class UserDatabase implements UserDatabaseInterface {
 
     private UserDatabase() {}
 
-    public static UserDatabaseInterface shared = new UserDatabase();
+    // Change to interface later (not working anymore, don't know why...)
+    public static UserDatabase shared = new UserDatabase();
 
-    @Override
-    public boolean create(User user) {
+    // "final" Huh....
+    public void create(final User user) {
+
         Realm realm = Realm.getDefaultInstance();
 
-        realm.beginTransaction();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Long id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+                RealmUser realmUser = realm.createObject(RealmUser.class, id);
 
-            //         TODO Change later
-            Long id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
-            RealmUser realmUser = realm.createObject(RealmUser.class, id);
+                realmUser.name = user.name;
 
-            realmUser.name = user.name;
+                for(Pet pet: user.pets) {
+                    Long petId = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+                    RealmPet realmPet = realm.createObject(RealmPet.class, petId);
 
-        realm.commitTransaction();
+                    // Repeating code!!! Õ-Õ
+                    realmPet.name = pet.name;
+                    realmPet.description = pet.description;
+                    realmPet.gender = pet.gender.toString();
+                    realmPet.species = pet.species;
+                    realmPet.breed = pet.breed;
 
-        realm.close();
+                    RealmAge realmAge = realm.createObject(RealmAge.class);
+                    realmAge.age = pet.age.age;
+                    realmAge.ageUnit = pet.age.ageUnit.toString();
 
-        return true;
+                    realmPet.realmAge = realmAge;
+
+                    realmUser.pets.add(realmPet);
+                }
+            }
+        });
     }
 
     @Override
