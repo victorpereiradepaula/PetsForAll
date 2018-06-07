@@ -1,4 +1,4 @@
-package com.example.dell.petsforall.Data.Database;
+package com.example.dell.petsforall.Data.Database.Pet;
 
 import com.example.dell.petsforall.Data.Entity.RealmAge;
 import com.example.dell.petsforall.Data.Entity.RealmPet;
@@ -15,17 +15,9 @@ import io.realm.RealmResults;
  * Created by renanbenattidias on 04/06/18.
  */
 
-interface PetDatabaseInterface {
-    boolean create(Pet pet);
-    boolean delete(Long id);
-    List<Pet> list();
-    void update(Pet pet) throws Exception;
-    Pet findBy(Long id);
-}
-
 public class PetDatabase implements PetDatabaseInterface {
 
-    public static PetDatabase shared = new PetDatabase();
+    public static PetDatabaseInterface shared = new PetDatabase();
 
     private PetDatabase() {}
 

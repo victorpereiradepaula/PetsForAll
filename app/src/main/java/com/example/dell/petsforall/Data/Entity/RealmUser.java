@@ -13,6 +13,12 @@ public class RealmUser extends RealmObject {
     @PrimaryKey
     public Long id;
     public String name;
+    public String email;
+    public String password;
+    public String phone;
+    public Double latitude;
+    public Double longitude;
+
     public RealmList<RealmPet> pets;
 
 }

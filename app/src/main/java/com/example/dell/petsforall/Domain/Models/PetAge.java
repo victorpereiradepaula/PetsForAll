@@ -1,6 +1,5 @@
 package com.example.dell.petsforall.Domain.Models;
 
-import com.example.dell.petsforall.Data.Entity.AgeUnit;
 import com.example.dell.petsforall.Data.Entity.RealmAge;
 
 /**

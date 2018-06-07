@@ -1,4 +1,4 @@
-package com.example.dell.petsforall.Data.Database;
+package com.example.dell.petsforall.Data.Database.User;
 
 import com.example.dell.petsforall.Data.Entity.RealmAge;
 import com.example.dell.petsforall.Data.Entity.RealmPet;
@@ -17,21 +17,11 @@ import io.realm.RealmResults;
  * Created by renanbenattidias on 01/06/18.
  */
 
-interface UserDatabaseInterface {
-//    boolean create(User user);
-    void create(final User user);
-    boolean delete(Long id);
-    List<User> list();
-    void update(User user) throws Exception;
-    User findUserBy(Long id);
-}
-
 public class UserDatabase implements UserDatabaseInterface {
 
     private UserDatabase() {}
 
-    // Change to interface later (not working anymore, don't know why...)
-    public static UserDatabase shared = new UserDatabase();
+    public static UserDatabaseInterface shared = new UserDatabase();
 
     // "final" Huh....
     public void create(final User user) {
@@ -73,7 +63,7 @@ public class UserDatabase implements UserDatabaseInterface {
     public boolean delete(Long id) {
         Realm realm = Realm.getDefaultInstance();
 
-        RealmUser realmUser = realm.where(RealmUser.class).findFirst();
+        RealmUser realmUser = realm.where(RealmUser.class).equalTo("id", id).findFirst();
 
         // guard let realmUser = realmUser else { realm.close; return false } :P
         if(realmUser == null) {
