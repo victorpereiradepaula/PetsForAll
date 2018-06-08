@@ -5,9 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
+    private EditText emailEditText;
+    private EditText passwordEditText;
     private Button loginButton;
     private Button createAccountButton;
     private Button recoverPasswordButton;
@@ -17,6 +20,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        emailEditText = findViewById(R.id.loginEmail);
+        passwordEditText = findViewById(R.id.loginPassword);
         loginButton = findViewById(R.id.loginButton);
         createAccountButton = findViewById(R.id.createAccountButton);
         recoverPasswordButton = findViewById(R.id.recoverPassword);
@@ -24,6 +29,11 @@ public class Login extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String email = emailEditText.getText().toString(), password = passwordEditText.getText().toString();
+                if (email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(Login.this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(Login.this, Home.class);
                 startActivity(intent);
                 finish();
