@@ -60,6 +60,44 @@ public class UserDatabase implements UserDatabaseInterface {
     }
 
     @Override
+    public void add(final Pet pet, final User user) throws Exception {
+        if(user == null || user.id == null)
+            throw new RuntimeException("User or user id is nil");
+
+        if(pet == null || pet.id == null)
+            throw new RuntimeException("Pet or pet id is nil");
+
+        Realm realm = Realm.getDefaultInstance();
+
+        final RealmUser realmUser = realm.where(RealmUser.class).equalTo("id", user.id).findFirst();
+
+        if(realmUser == null)
+            throw new RuntimeException("User not found");
+
+        realm.executeTransaction(new Realm.Transaction() {
+             @Override
+             public void execute(Realm realm) {
+                 Long id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+                 RealmPet realmPet = realm.createObject(RealmPet.class, id);
+
+                 realmPet.name = pet.name;
+                 realmPet.description = pet.description;
+                 realmPet.gender = pet.gender.toString();
+                 realmPet.species = pet.species;
+                 realmPet.breed = pet.breed;
+
+                 RealmAge realmAge = realm.createObject(RealmAge.class);
+                 realmAge.age = pet.age.age;
+                 realmAge.ageUnit = pet.age.ageUnit.toString();
+
+                 realmPet.realmAge = realmAge;
+
+                 realmUser.pets.add(realmPet);
+             }
+         });
+    }
+
+    @Override
     public boolean delete(Long id) {
         Realm realm = Realm.getDefaultInstance();
 

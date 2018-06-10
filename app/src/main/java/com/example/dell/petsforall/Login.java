@@ -63,18 +63,5 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        User user = new User("Renan", "renanbenattidias@gmail.com", "secret123", "21341235", 12342.0, 2343.0, null);
-        UserDatabase.shared.create(user);
-
-        Pet pet = new Pet("Garu", "asdfsadg", Gender.F, "asdfasdf", "asdfsad", new PetAge(5, AgeUnit.Years));
-
-        user.pets.add(pet);
-
-        try {
-            UserDatabase.shared.update(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 }
