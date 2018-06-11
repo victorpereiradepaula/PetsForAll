@@ -56,6 +56,11 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
+                if(!user.password.equals(password)) {
+                    Toast.makeText(Login.this, "Email ou senha errados", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 SharedPreferences preferences = getApplicationContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putLong("current_user_id", user.id);

@@ -182,7 +182,9 @@ public class UserDatabase implements UserDatabaseInterface {
         Realm realm = Realm.getDefaultInstance();
 
         // Fiz mas não concordo.
-        RealmUser realmUser = realm.where(RealmUser.class).equalTo("email", email).equalTo("password", password).findFirst();
+        RealmUser realmUser = realm.where(RealmUser.class)
+                .equalTo("email", email)
+                .equalTo("password", password).findFirst();
 
         if(realmUser == null) {
             realm.close();
