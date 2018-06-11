@@ -24,33 +24,16 @@ import java.util.ArrayList;
 public class DonateFragment extends Fragment {
     private FloatingActionButton floatingActionButton;
 
+    ListView listView;
+    View view;
+
     public DonateFragment() {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_donate, container, false);
-        floatingActionButton = view.findViewById(R.id.buttonAddPet);
-
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), AddPet.class);
-                startActivity(intent);
-            }
-        });
-//        String[] cats = {
-//                "Panquequinha",
-//                "Dante",
-//                "Belinha",
-//                "Boris I",
-//                "Boris II",
-//                "Mingal"
-//        };
+    public void onResume() {
+        super.onResume();
 
         User user = UserDatabase.shared.getCurrentUser(getContext());
 
@@ -60,11 +43,28 @@ public class DonateFragment extends Fragment {
             for(Pet pet: user.pets)
                 petNames[i++] = pet.name;
 
-            ListView listView = view.findViewById(R.id.listDonate);
+
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, petNames);
             listView.setAdapter(arrayAdapter);
         }
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        view = inflater.inflate(R.layout.fragment_donate, container, false);
+        floatingActionButton = view.findViewById(R.id.buttonAddPet);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddPet.class);
+                startActivity(intent);
+            }
+        });
+
+        listView = view.findViewById(R.id.listDonate);
 
         return view;
     }
