@@ -16,6 +16,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dell.petsforall.Data.Database.User.UserDatabase;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,8 +67,20 @@ public class EditProfileFragment extends Fragment {
                 alertDialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                      TODO: - Apagar usuário
-                        Toast.makeText(getContext(), "Em breve", Toast.LENGTH_SHORT).show();
+
+                        // Log out
+                        SharedPreferences preferences = getContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        Long userId = preferences.getLong("current_user_id", -1);
+                        UserDatabase.shared.delete(userId);
+                        editor.putLong("current_user_id", -1);
+                        editor.commit();
+
+                        Toast.makeText(getContext(), "Usuário apagado com sucesso", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(getContext(), Login.class);
+                        startActivity(intent);
+                        getActivity().finish();
                     }
             });
                 alertDialog.show();
