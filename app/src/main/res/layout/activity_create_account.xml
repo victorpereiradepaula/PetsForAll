@@ -59,15 +59,11 @@
         android:id="@+id/createAccountButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="@string/button_create"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createAccountPasswordConfirmation" />
+        app:layout_constraintEnd_toEndOf="@+id/createAccountPhone"
+        app:layout_constraintStart_toStartOf="@+id/createAccountPhone"
+        app:layout_constraintTop_toBottomOf="@+id/createAccountPhone" />
 
     <TextView
         android:id="@+id/textView4"
@@ -75,10 +71,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/label_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <TextView
         android:id="@+id/textView5"
@@ -106,4 +102,37 @@
         android:text="@string/label_confirmation"
         app:layout_constraintStart_toStartOf="@+id/createAccountPasswordConfirmation"
         app:layout_constraintTop_toBottomOf="@+id/createAccountPassword" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/label_phone"
+        app:layout_constraintStart_toStartOf="@+id/createAccountPasswordConfirmation"
+        app:layout_constraintTop_toBottomOf="@+id/createAccountPasswordConfirmation" />
+
+    <EditText
+        android:id="@+id/createAccountPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="@+id/createAccountPasswordConfirmation"
+        app:layout_constraintStart_toStartOf="@+id/textView26"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/title_create_account"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
