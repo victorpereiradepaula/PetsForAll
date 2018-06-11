@@ -11,6 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.dell.petsforall.Data.Database.User.UserDatabase;
+import com.example.dell.petsforall.Domain.Models.Pet;
+import com.example.dell.petsforall.Domain.Models.User;
+
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,18 +43,28 @@ public class DonateFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        String[] cats = {
-                "Panquequinha",
-                "Dante",
-                "Belinha",
-                "Boris I",
-                "Boris II",
-                "Mingal"
-        };
+//        String[] cats = {
+//                "Panquequinha",
+//                "Dante",
+//                "Belinha",
+//                "Boris I",
+//                "Boris II",
+//                "Mingal"
+//        };
 
-        ListView listView = view.findViewById(R.id.listDonate);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, cats);
-        listView.setAdapter(arrayAdapter);
+        User user = UserDatabase.shared.getCurrentUser(getContext());
+
+        if(user != null) {
+            String[] petNames = new String[user.pets.size()];
+            int i = 0;
+            for(Pet pet: user.pets)
+                petNames[i++] = pet.name;
+
+            ListView listView = view.findViewById(R.id.listDonate);
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, petNames);
+            listView.setAdapter(arrayAdapter);
+        }
+
 
         return view;
     }

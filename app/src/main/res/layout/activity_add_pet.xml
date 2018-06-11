@@ -32,9 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/label_gender"
-        app:layout_constraintEnd_toEndOf="@+id/editText10"
-        app:layout_constraintStart_toStartOf="@+id/editText10"
-        app:layout_constraintTop_toBottomOf="@+id/editText10" />
+        app:layout_constraintEnd_toEndOf="@+id/ageEditTex"
+        app:layout_constraintStart_toStartOf="@+id/ageEditTex"
+        app:layout_constraintTop_toBottomOf="@+id/ageEditTex" />
 
     <TextView
         android:id="@+id/textView22"
@@ -71,7 +71,7 @@
         android:contentDescription="TODO" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/petNameEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/raceEditTex"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -98,8 +98,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/label_time_unit"
-        app:layout_constraintEnd_toEndOf="@+id/editText7"
-        app:layout_constraintStart_toStartOf="@+id/editText7"
+        app:layout_constraintEnd_toEndOf="@+id/petNameEditText"
+        app:layout_constraintStart_toStartOf="@+id/petNameEditText"
         app:layout_constraintTop_toTopOf="@+id/textView20" />
 
     <Spinner
@@ -108,7 +108,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:entries="@array/array_time_unit"
-        app:layout_constraintBottom_toBottomOf="@+id/editText10"
+        app:layout_constraintBottom_toBottomOf="@+id/ageEditTex"
         app:layout_constraintEnd_toEndOf="@+id/textView24"
         app:layout_constraintStart_toStartOf="@+id/textView24"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
@@ -124,7 +124,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <EditText
-        android:id="@+id/editText10"
+        android:id="@+id/ageEditTex"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -139,10 +139,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:entries="@array/array_gender"
-        app:layout_constraintBottom_toBottomOf="@+id/editText8"
+        app:layout_constraintBottom_toBottomOf="@+id/raceEditTex"
         app:layout_constraintEnd_toEndOf="@+id/textView21"
         app:layout_constraintStart_toStartOf="@+id/textView21"
-        app:layout_constraintTop_toTopOf="@+id/editText8" />
+        app:layout_constraintTop_toTopOf="@+id/raceEditTex" />
 
     <Button
         android:id="@+id/addPetButton"
@@ -151,7 +151,7 @@
         android:layout_marginBottom="32dp"
         android:text="@string/button_save"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editText8"
+        app:layout_constraintEnd_toEndOf="@+id/raceEditTex"
         app:layout_constraintStart_toStartOf="@+id/addGenderSpinner" />
 
     <TextView
@@ -160,12 +160,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/label_description"
-        app:layout_constraintEnd_toEndOf="@+id/editText8"
+        app:layout_constraintEnd_toEndOf="@+id/raceEditTex"
         app:layout_constraintStart_toStartOf="@+id/addGenderSpinner"
         app:layout_constraintTop_toBottomOf="@+id/addGenderSpinner" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/descriptionEditTex"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"

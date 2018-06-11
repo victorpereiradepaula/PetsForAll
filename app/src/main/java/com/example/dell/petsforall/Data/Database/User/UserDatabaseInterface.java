@@ -1,5 +1,7 @@
 package com.example.dell.petsforall.Data.Database.User;
 
+import android.content.Context;
+
 import com.example.dell.petsforall.Domain.Models.Pet;
 import com.example.dell.petsforall.Domain.Models.User;
 
@@ -17,4 +19,5 @@ public interface UserDatabaseInterface {
     User findUserBy(Long id);
     User findUserBy(String email, String password);
     void add(final Pet pet, final User user) throws Exception;
+    public User getCurrentUser(Context context);
 }

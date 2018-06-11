@@ -1,5 +1,8 @@
 package com.example.dell.petsforall.Data.Database.User;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.example.dell.petsforall.Data.Entity.RealmAge;
 import com.example.dell.petsforall.Data.Entity.RealmPet;
 import com.example.dell.petsforall.Data.Entity.RealmUser;
@@ -69,7 +72,7 @@ public class UserDatabase implements UserDatabaseInterface {
         if(user == null || user.id == null)
             throw new RuntimeException("User or user id is nil");
 
-        if(pet == null || pet.id == null)
+        if(pet == null)
             throw new RuntimeException("Pet or pet id is nil");
 
         Realm realm = Realm.getDefaultInstance();
@@ -175,6 +178,15 @@ public class UserDatabase implements UserDatabaseInterface {
 
         realm.close();
         return user;
+    }
+
+    @Override
+    public User getCurrentUser(Context context) {
+        Long userId = context.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE).getLong("current_user_id", -1);
+        if(userId == -1)
+            return null;
+
+        return findUserBy(userId);
     }
 
     @Override
