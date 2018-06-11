@@ -1,6 +1,8 @@
 package com.example.dell.petsforall;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -43,12 +45,22 @@ public class CreateAccount extends AppCompatActivity {
                     Toast.makeText(CreateAccount.this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 if (!password.equals(passwordConfirmation)) {
                     Toast.makeText(CreateAccount.this, "Senhas não conferem", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 User user = new User(name,email,password,phone,0.0,0.0, new ArrayList<Pet>());
                 UserDatabase.shared.create(user);
+
+                User dbUser = UserDatabase.shared.findUserBy(email, password);
+                if(dbUser != null) {
+                    SharedPreferences preferences = getApplicationContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putLong("current_user_id", dbUser.id);
+                    editor.commit();
+                }
+
                 Toast.makeText(CreateAccount.this, "Usuário criado com sucesso!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CreateAccount.this, Home.class);
                 startActivity(intent);

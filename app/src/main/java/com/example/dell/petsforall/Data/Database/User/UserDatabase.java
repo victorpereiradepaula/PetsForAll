@@ -35,6 +35,11 @@ public class UserDatabase implements UserDatabaseInterface {
                 RealmUser realmUser = realm.createObject(RealmUser.class, id);
 
                 realmUser.name = user.name;
+                realmUser.email = user.email;
+                realmUser.latitude = user.latitude;
+                realmUser.longitude = user.longitude;
+                realmUser.phone = user.phone;
+                realmUser.password = user.password;
 
                 for(Pet pet: user.pets) {
                     Long petId = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
@@ -160,6 +165,24 @@ public class UserDatabase implements UserDatabaseInterface {
         Realm realm = Realm.getDefaultInstance();
 
         RealmUser realmUser = realm.where(RealmUser.class).equalTo("id", id).findFirst();
+
+        if(realmUser == null) {
+            realm.close();
+            return null;
+        }
+
+        User user = new User(realmUser);
+
+        realm.close();
+        return user;
+    }
+
+    @Override
+    public User findUserBy(String email, String password) {
+        Realm realm = Realm.getDefaultInstance();
+
+        // Fiz mas não concordo.
+        RealmUser realmUser = realm.where(RealmUser.class).equalTo("email", email).equalTo("password", password).findFirst();
 
         if(realmUser == null) {
             realm.close();

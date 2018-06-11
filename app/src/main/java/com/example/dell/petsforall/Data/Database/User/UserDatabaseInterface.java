@@ -15,5 +15,6 @@ public interface UserDatabaseInterface {
     List<User> list();
     void update(User user) throws Exception;
     User findUserBy(Long id);
+    User findUserBy(String email, String password);
     void add(final Pet pet, final User user) throws Exception;
 }

@@ -1,7 +1,9 @@
 package com.example.dell.petsforall;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -46,6 +48,19 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                User user = UserDatabase.shared.findUserBy(email, password);
+
+                if(user == null) {
+                    Toast.makeText(Login.this, "Conta não encontrada", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                SharedPreferences preferences = getApplicationContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putLong("current_user_id", user.id);
+                editor.commit();
+
                 Intent intent = new Intent(Login.this, Home.class);
                 startActivity(intent);
                 finish();
