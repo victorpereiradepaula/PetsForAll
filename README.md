@@ -9,7 +9,7 @@ Esta versão é um protótipo que será utilizado como trabalho final da discipl
 
 ### Funcionalidades:
 
-- RF1: O usuário deve ser capaz de criar uma conta;
+- ~RF1: O usuário deve ser capaz de criar uma conta;~
 - RF2: O usuário deve ser capaz de efetuar login;
 - RF3: O usuário deve ser capaz de ver os pets disponíveis para adoção;
 - RF4: O usuário deve ser capaz de requisitar a adoção do pet;
@@ -19,6 +19,10 @@ Esta versão é um protótipo que será utilizado como trabalho final da discipl
 - RF8: O usuário deve ser capaz de excluir os pets cadastrados por ele;
 - RF9: O usuário deve ser capaz de alterar as configurações de qual tipo de pet ele deseja adotar (cães, gatos ou nenhum, caso esteja no aplicativo apenas para doar) e do raio de busca (distância entre doador e interessado).
 
-### Links:
+## Dependências:
+
+- [Realm](https://realm.io/)
+
+### Links úteis:
 
 - Logo: https://www.flaticon.com/free-icon/pet-hotel-sign-with-a-dog-and-a-cat-under-a-roof-line_35097#term=pets&page=1&position=53
