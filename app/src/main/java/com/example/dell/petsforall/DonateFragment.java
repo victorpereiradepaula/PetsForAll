@@ -34,6 +34,7 @@ public class DonateFragment extends Fragment {
     String[] petNames;
     Long[] petIds;
     ArrayAdapter<String> arrayAdapter;
+    int currentId;
 
     public DonateFragment() {
         // Required empty public constructor
@@ -57,7 +58,9 @@ public class DonateFragment extends Fragment {
 
 
             arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, petNames);
+            listView.setEmptyView(view.findViewById(R.id.emptyDonate));
             listView.setAdapter(arrayAdapter);
+
         }
     }
 
@@ -88,17 +91,23 @@ public class DonateFragment extends Fragment {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                currentId = i;
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
                 final String selectedItem = petNames[i];
-                alertDialog.setMessage("Deseja remover este pet\n?" + selectedItem);
+                alertDialog.setMessage("Deseja remover " + selectedItem + "?");
                 alertDialog.setCancelable(true);
                 alertDialog.setNegativeButton("No", null);
                 alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                        PetDatabase.shared.delete(position);
-                        arrayAdapter.notifyDataSetChanged();
-                        Toast.makeText(getContext(), selectedItem + " foi removido.",Toast.LENGTH_LONG).show();
+                        boolean petDeleted = PetDatabase.shared.delete(petIds[currentId]);
+                        if (petDeleted) {
+                            arrayAdapter.notifyDataSetChanged();
+                            onResume();
+                            Toast.makeText(getContext(), selectedItem + " foi removido.",Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(getContext(), "Algo deu errado :(",Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
                 alertDialog.show();

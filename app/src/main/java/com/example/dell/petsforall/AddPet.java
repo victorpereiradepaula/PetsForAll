@@ -67,15 +67,15 @@ public class AddPet extends AppCompatActivity {
 
                 // Did but don't agree
                 if(unitString.equals("Dias"))
-                    unit = AgeUnit.Days;
+                    unit = AgeUnit.Dias;
                 else if(unitString.equals("Semanas"))
-                    unit = AgeUnit.Weeks;
+                    unit = AgeUnit.Semanas;
                 else if(unitString.equals("Meses"))
-                    unit = AgeUnit.Months;
+                    unit = AgeUnit.Meses;
                 else if(unitString.equals("Anos"))
-                    unit = AgeUnit.Years;
+                    unit = AgeUnit.Anos;
                 else
-                    unit = AgeUnit.Days;
+                    unit = AgeUnit.Dias;
 
                 String race = raceEditText.getText().toString();
                 String description = descriptionEditText.getText().toString();

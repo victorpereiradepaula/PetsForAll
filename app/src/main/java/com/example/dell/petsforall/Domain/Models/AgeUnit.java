@@ -5,5 +5,5 @@ package com.example.dell.petsforall.Domain.Models;
  */
 
 public enum AgeUnit {
-    Days, Weeks, Months, Years
+    Dias, Semanas, Meses, Anos
 }
