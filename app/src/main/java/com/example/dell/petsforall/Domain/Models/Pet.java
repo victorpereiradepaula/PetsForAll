@@ -2,11 +2,13 @@ package com.example.dell.petsforall.Domain.Models;
 
 import com.example.dell.petsforall.Data.Entity.RealmPet;
 
+import java.io.Serializable;
+
 /**
  * Created by renanbenattidias on 01/06/18.
  */
 
-public class Pet {
+public class Pet implements Serializable {
 
     public Long id;
     public String name;

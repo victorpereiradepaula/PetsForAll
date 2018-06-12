@@ -2,11 +2,13 @@ package com.example.dell.petsforall.Domain.Models;
 
 import com.example.dell.petsforall.Data.Entity.RealmAge;
 
+import java.io.Serializable;
+
 /**
  * Created by renanbenattidias on 01/06/18.
  */
 
-public class PetAge {
+public class PetAge implements Serializable {
     public Integer age;
     public AgeUnit ageUnit;
 

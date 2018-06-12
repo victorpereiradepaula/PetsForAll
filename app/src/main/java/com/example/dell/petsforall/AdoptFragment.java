@@ -8,6 +8,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.example.dell.petsforall.Data.Database.Pet.PetDatabase;
+import com.example.dell.petsforall.Domain.Models.Pet;
+
+import java.util.List;
 
 
 /**
@@ -15,22 +23,30 @@ import android.view.ViewGroup;
  */
 public class AdoptFragment extends Fragment {
 
+    ListView listView;
+
+    List<Pet> pets;
+
 
     public AdoptFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_adopt, container, false);
 
-        FloatingActionButton floatingActionButton = view.findViewById(R.id.homeAdoptButton);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        listView = view.findViewById(R.id.adoptListView);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), Adopt.class);
+                Pet pet  = pets.get(position);
+
+                intent.putExtra("pet", pet);
+
                 startActivity(intent);
             }
         });
@@ -38,4 +54,21 @@ public class AdoptFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        pets = PetDatabase.shared.list();
+
+        if(pets != null) {
+            String[] petNames = new String[pets.size()];
+
+            int i = 0;
+            for(Pet pet: pets)
+                petNames[i++] = pet.name;
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, petNames);
+            listView.setAdapter(adapter);
+        }
+    }
 }
