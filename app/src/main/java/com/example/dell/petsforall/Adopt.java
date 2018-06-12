@@ -5,9 +5,11 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dell.petsforall.Domain.Models.Gender;
 import com.example.dell.petsforall.Domain.Models.Pet;
@@ -25,6 +27,7 @@ public class Adopt extends AppCompatActivity {
     TextView petAgeTextView;
     TextView descriptionTextView;
     TextView petGenderTextView;
+    TextView petSpeciesTextView;
     Button adoptButton;
 
     Pet pet;
@@ -48,14 +51,23 @@ public class Adopt extends AppCompatActivity {
         descriptionTextView = findViewById(R.id.descriptionTextView);
         petGenderTextView = findViewById(R.id.petGenderTextView);
         adoptButton = findViewById(R.id.adoptButton);
+        petSpeciesTextView = findViewById(R.id.speciesTextView);
+
+        adoptButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Adopt.this,"Em breve!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
     private void populate() {
         petNameTextView.setText(pet.name);
-        petAgeTextView.setText(pet.age.age.toString());
+        petAgeTextView.setText(pet.age.age.toString() + " " + pet.age.ageUnit.name());
         descriptionTextView.setText(pet.description);
         petGenderTextView.setText(pet.gender == Gender.M ? "Macho" : "Fêmea");
+        petSpeciesTextView.setText(pet.species);
 
         new Thread() {
             public void run() {

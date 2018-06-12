@@ -44,6 +44,8 @@
     <string name="months">Meses</string>
     <string name="years">Anos</string>
     <string name="not_implemented">Funcionalidade não implementada nesta versão do aplicativo.</string>
+    <string name="empty_donate">Nenhum pet para doação</string>
+    <string name="empty_adopt">Nenhum pet para adoção perto de você</string>
 
     <string-array name="array_gender">
         <item></item>

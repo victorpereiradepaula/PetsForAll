@@ -10,12 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.dell.petsforall.Data.Database.Pet.PetDatabase;
 import com.example.dell.petsforall.Data.Database.User.UserDatabase;
+import com.example.dell.petsforall.Domain.Models.AgeUnit;
+import com.example.dell.petsforall.Domain.Models.Gender;
 import com.example.dell.petsforall.Domain.Models.Pet;
+import com.example.dell.petsforall.Domain.Models.PetAge;
 import com.example.dell.petsforall.Domain.Models.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CreateAccount extends AppCompatActivity {
     private EditText nameEditText;
@@ -28,6 +31,14 @@ public class CreateAccount extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String[] names = {"Boris", "Puca", "Garu", "Belinha", "Bob", "Lucy", "Boris II", "Marry", "Rex", "Catarina"};
+        for (int index = 0; index < 10; index++) {
+            Gender gender = index % 2 == 0 ? Gender.M : Gender.F;
+            Pet pet = new Pet(names[index], "Fofo...", gender, "Gato", "Vira-lata", new PetAge(10, AgeUnit.Meses));
+            PetDatabase.shared.create(pet);
+        }
+
         setContentView(R.layout.activity_create_account);
         nameEditText = findViewById(R.id.createAccountName);
         emailEditText = findViewById(R.id.createAccountEmail);

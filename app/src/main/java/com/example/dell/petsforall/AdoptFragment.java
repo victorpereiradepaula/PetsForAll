@@ -24,7 +24,7 @@ import java.util.List;
 public class AdoptFragment extends Fragment {
 
     ListView listView;
-
+    View view;
     List<Pet> pets;
 
 
@@ -35,7 +35,7 @@ public class AdoptFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_adopt, container, false);
+        view = inflater.inflate(R.layout.fragment_adopt, container, false);
 
         listView = view.findViewById(R.id.adoptListView);
 
@@ -68,6 +68,7 @@ public class AdoptFragment extends Fragment {
                 petNames[i++] = pet.name;
 
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, petNames);
+            listView.setEmptyView(view.findViewById(R.id.emptyAdopt));
             listView.setAdapter(adapter);
         }
     }
