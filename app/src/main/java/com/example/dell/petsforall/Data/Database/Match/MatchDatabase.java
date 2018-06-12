@@ -1,6 +1,5 @@
 package com.example.dell.petsforall.Data.Database.Match;
 
-import com.example.dell.petsforall.Data.Database.DatabaseInterface;
 import com.example.dell.petsforall.Data.Entity.RealmMatch;
 import com.example.dell.petsforall.Data.Entity.RealmPet;
 import com.example.dell.petsforall.Data.Entity.RealmUser;

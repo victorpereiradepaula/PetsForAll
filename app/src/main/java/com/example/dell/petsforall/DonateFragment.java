@@ -56,7 +56,6 @@ public class DonateFragment extends Fragment {
                 petIds[i++] = pet.id;
             }
 
-
             arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, petNames);
             listView.setAdapter(arrayAdapter);
         }
@@ -100,7 +99,7 @@ public class DonateFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         boolean petDeleted = PetDatabase.shared.delete(petIds[currentId]);
                         if (petDeleted) {
-                            arrayAdapter.notifyDataSetChanged();
+//                            arrayAdapter.notifyDataSetChanged();
                             onResume();
                             Toast.makeText(getContext(), selectedItem + " foi removido.",Toast.LENGTH_LONG).show();
                         } else {

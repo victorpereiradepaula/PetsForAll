@@ -51,16 +51,19 @@ public class PetDatabase implements PetDatabaseInterface {
     public boolean delete(Long id) {
         Realm realm = Realm.getDefaultInstance();
 
-        RealmPet realmPet = realm.where(RealmPet.class).findFirst();
+        final RealmPet realmPet = realm.where(RealmPet.class).findFirst();
 
         if(realmPet == null) {
             realm.close();
             return false;
         }
 
-        realm.beginTransaction();
-        realmPet.deleteFromRealm();
-        realm.commitTransaction();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realmPet.deleteFromRealm();
+            }
+        });
 
         realm.close();
         return true;
