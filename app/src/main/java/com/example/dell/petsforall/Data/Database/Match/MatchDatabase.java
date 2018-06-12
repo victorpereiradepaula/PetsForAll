@@ -68,16 +68,19 @@ public class MatchDatabase implements MatchDatabaseInterface {
     public boolean delete(Long id) {
         Realm realm = Realm.getDefaultInstance();
 
-        RealmMatch realmMatch = realm.where(RealmMatch.class).equalTo("id", id).findFirst();
+        final RealmMatch realmMatch = realm.where(RealmMatch.class).equalTo("id", id).findFirst();
 
         if(realmMatch == null) {
             realm.close();
             return false;
         }
 
-        realm.beginTransaction();
-            realmMatch.deleteFromRealm();
-        realm.commitTransaction();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realmMatch.deleteFromRealm();
+            }
+        });
 
         realm.close();
         return true;

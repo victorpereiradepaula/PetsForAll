@@ -109,7 +109,7 @@ public class UserDatabase implements UserDatabaseInterface {
     public boolean delete(Long id) {
         Realm realm = Realm.getDefaultInstance();
 
-        RealmUser realmUser = realm.where(RealmUser.class).equalTo("id", id).findFirst();
+        final RealmUser realmUser = realm.where(RealmUser.class).equalTo("id", id).findFirst();
 
         // guard let realmUser = realmUser else { realm.close; return false } :P
         if(realmUser == null) {
@@ -117,9 +117,12 @@ public class UserDatabase implements UserDatabaseInterface {
             return false;
         }
 
-        realm.beginTransaction();
-            realmUser.deleteFromRealm();
-        realm.commitTransaction();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realmUser.deleteFromRealm();
+            }
+        });
 
         realm.close();
         return true;
