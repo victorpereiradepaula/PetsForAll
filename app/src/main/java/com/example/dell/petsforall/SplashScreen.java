@@ -36,6 +36,7 @@ public class SplashScreen extends AppCompatActivity {
         for (int index = 0; index < 10; index++) {
             Gender gender = index % 2 == 0 ? Gender.M : Gender.F;
             Pet pet = new Pet(names[index], "Fofo...", gender, "Gato", "Vira-lata", new PetAge(10, AgeUnit.Months));
+            PetDatabase.shared.create(pet);
         }
 
         new Handler().postDelayed(new Runnable() {
