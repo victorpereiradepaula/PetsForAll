@@ -73,7 +73,7 @@ public class Adopt extends AppCompatActivity {
         new Thread() {
             public void run() {
                 try {
-                    URL url = new URL("http://thecatapi.com/api/images/get?format=src&results_per_page=1");
+                    URL url = new URL("http://thecatapi.com/api/images/get?format=src&results_per_page=1&type=jpg");
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setDoInput(true);
                     InputStream inputStream = connection.getInputStream();
