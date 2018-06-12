@@ -37,6 +37,33 @@ public class Pet implements Serializable {
         this.age = age;
     }
 
+    public Pet(String name, String description, Gender gender, String species, PetAge age) {
+        this.name = name;
+        this.description = description;
+        this.gender = gender;
+        this.species = species;
+        this.breed = "";
+        this.age = age;
+    }
+
+    public Pet(String name, Gender gender, String species, PetAge age) {
+        this.name = name;
+        this.description = "";
+        this.gender = gender;
+        this.species = species;
+        this.breed = "";
+        this.age = age;
+    }
+
+    public Pet(String name, Gender gender, String species, String breed,PetAge age) {
+        this.name = name;
+        this.description = "";
+        this.gender = gender;
+        this.species = species;
+        this.breed = breed;
+        this.age = age;
+    }
+
     public Pet(RealmPet realmPet) {
         this.id = realmPet.id;
         this.name = realmPet.name;

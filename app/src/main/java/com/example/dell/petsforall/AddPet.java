@@ -44,12 +44,25 @@ public class AddPet extends AppCompatActivity {
                     Toast.makeText(AddPet.this, "Informe a espécie!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 String name = nameEditText.getText().toString();
+                if (name.isEmpty()) {
+                    Toast.makeText(AddPet.this, "Informe o nome!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                Integer age = Integer.parseInt(ageEditText.getText().toString());
+                String ageString = ageEditText.getText().toString();
+                if (ageString.isEmpty()) {
+                    Toast.makeText(AddPet.this, "Informe a idade!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Integer age = Integer.parseInt(ageString);
 
                 String unitString = timeUnitSpinner.getSelectedItem().toString();
+                if (unitString.isEmpty()) {
+                    Toast.makeText(AddPet.this, "Informe a unidade!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 AgeUnit unit;
 
                 // Did but don't agree
@@ -67,6 +80,10 @@ public class AddPet extends AppCompatActivity {
                 String race = raceEditText.getText().toString();
                 String description = descriptionEditText.getText().toString();
                 String gender = genderSpinner.getSelectedItem().toString();
+                if (gender.isEmpty()) {
+                    Toast.makeText(AddPet.this, "Informe o gênero!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Pet pet = new Pet(name, description, gender.equals("Macho") ? Gender.M : Gender.F, species, race, new PetAge(age, unit));
 

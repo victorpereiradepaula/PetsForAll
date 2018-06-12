@@ -6,9 +6,19 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.dell.petsforall.Data.Database.Pet.PetDatabase;
 import com.example.dell.petsforall.Data.Database.User.UserDatabase;
 import com.example.dell.petsforall.Data.Entity.RealmUser;
+import com.example.dell.petsforall.Domain.Models.AgeUnit;
+import com.example.dell.petsforall.Domain.Models.Gender;
+import com.example.dell.petsforall.Domain.Models.Pet;
+import com.example.dell.petsforall.Domain.Models.PetAge;
 import com.example.dell.petsforall.Domain.Models.User;
+
+import java.io.InputStream;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import io.realm.Realm;
 
@@ -21,6 +31,12 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         Realm.init(getApplicationContext());
+
+        String[] names = {"Boris", "Puca", "Garu", "Belinha", "Bob", "Lucy", "Boris II", "Marry", "Rex", "Catarina"};
+        for (int index = 0; index < 10; index++) {
+            Gender gender = index % 2 == 0 ? Gender.M : Gender.F;
+            Pet pet = new Pet(names[index], "Fofo...", gender, "Gato", "Vira-lata", new PetAge(10, AgeUnit.Months));
+        }
 
         new Handler().postDelayed(new Runnable() {
             @Override

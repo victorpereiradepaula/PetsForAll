@@ -10,12 +10,12 @@ Esta versão é um protótipo que será utilizado como trabalho final da discipl
 ### Funcionalidades:
 
 - ~RF1: O usuário deve ser capaz de criar uma conta;~
-- RF2: O usuário deve ser capaz de efetuar login;
-- RF3: O usuário deve ser capaz de ver os pets disponíveis para adoção;
+- ~RF2: O usuário deve ser capaz de efetuar login;~
+- ~RF3: O usuário deve ser capaz de ver os pets disponíveis para adoção;~
 - RF4: O usuário deve ser capaz de requisitar a adoção do pet;
-- RF5: O usuário deve ser capaz de cadastrar pets para adoção;
+- ~RF5: O usuário deve ser capaz de cadastrar pets para adoção;~
 - RF6: O usuário deve ser capaz de visualizar os pets cadastrados por ele;
-- RF7: O usuário deve ser capaz de editar os pets cadastrados por ele;
+- ~RF7: O usuário deve ser capaz de editar os pets cadastrados por ele;~
 - RF8: O usuário deve ser capaz de excluir os pets cadastrados por ele;
 - RF9: O usuário deve ser capaz de alterar as configurações de qual tipo de pet ele deseja adotar (cães, gatos ou nenhum, caso esteja no aplicativo apenas para doar) e do raio de busca (distância entre doador e interessado).
 

@@ -1,6 +1,8 @@
 package com.example.dell.petsforall;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,9 +10,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.dell.petsforall.Data.Database.Pet.PetDatabase;
 import com.example.dell.petsforall.Data.Database.User.UserDatabase;
 import com.example.dell.petsforall.Domain.Models.Pet;
 import com.example.dell.petsforall.Domain.Models.User;
@@ -26,6 +31,9 @@ public class DonateFragment extends Fragment {
 
     ListView listView;
     View view;
+    String[] petNames;
+    Long[] petIds;
+    ArrayAdapter<String> arrayAdapter;
 
     public DonateFragment() {
         // Required empty public constructor
@@ -38,13 +46,17 @@ public class DonateFragment extends Fragment {
         User user = UserDatabase.shared.getCurrentUser(getContext());
 
         if(user != null) {
-            String[] petNames = new String[user.pets.size()];
+            int arraySize = user.pets.size();
+            petNames = new String[arraySize];
+            petIds = new Long[arraySize];
             int i = 0;
-            for(Pet pet: user.pets)
-                petNames[i++] = pet.name;
+            for(Pet pet: user.pets) {
+                petNames[i] = pet.name;
+                petIds[i++] = pet.id;
+            }
 
 
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, petNames);
+            arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, petNames);
             listView.setAdapter(arrayAdapter);
         }
     }
@@ -65,6 +77,34 @@ public class DonateFragment extends Fragment {
         });
 
         listView = view.findViewById(R.id.listDonate);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+                final String selectedItem = petNames[i];
+                alertDialog.setMessage("Deseja remover este pet\n?" + selectedItem);
+                alertDialog.setCancelable(true);
+                alertDialog.setNegativeButton("No", null);
+                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        PetDatabase.shared.delete(position);
+                        arrayAdapter.notifyDataSetChanged();
+                        Toast.makeText(getContext(), selectedItem + " foi removido.",Toast.LENGTH_LONG).show();
+                    }
+                });
+                alertDialog.show();
+                return true;
+            }
+        });
 
         return view;
     }
