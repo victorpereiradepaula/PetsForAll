@@ -1,9 +1,24 @@
 package com.example.dell.petsforall;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.dell.petsforall.Data.Database.Pet.PetDatabase;
+import com.example.dell.petsforall.Data.Database.User.UserDatabase;
+import com.example.dell.petsforall.Data.Entity.RealmUser;
+import com.example.dell.petsforall.Domain.Models.AgeUnit;
+import com.example.dell.petsforall.Domain.Models.Gender;
+import com.example.dell.petsforall.Domain.Models.Pet;
+import com.example.dell.petsforall.Domain.Models.PetAge;
+import com.example.dell.petsforall.Domain.Models.User;
+
+import java.io.InputStream;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import io.realm.Realm;
 
@@ -17,13 +32,42 @@ public class SplashScreen extends AppCompatActivity {
 
         Realm.init(getApplicationContext());
 
+        String[] names = {"Boris", "Puca", "Garu", "Belinha", "Bob", "Lucy", "Boris II", "Marry", "Rex", "Catarina"};
+        for (int index = 0; index < 10; index++) {
+            Gender gender = index % 2 == 0 ? Gender.M : Gender.F;
+            Pet pet = new Pet(names[index], "Fofo...", gender, "Gato", "Vira-lata", new PetAge(10, AgeUnit.Months));
+            PetDatabase.shared.create(pet);
+        }
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreen.this, Login.class);
-                startActivity(intent);
-                finish();
+                Long userId = getApplicationContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE).getLong("current_user_id", -1);
+
+                if(userId == -1) {
+                    goToLogin();
+                    return;
+                }
+
+                User user = UserDatabase.shared.findUserBy(userId);
+
+                if(user != null) {
+                    goToHome();
+                    return;
+                }
             }
         },SPLASH_SCREEN_TIME);
+    }
+
+    private void goToLogin() {
+        Intent intent = new Intent(SplashScreen.this, Login.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void goToHome() {
+        Intent intent = new Intent(SplashScreen.this, Home.class);
+        startActivity(intent);
+        finish();
     }
 }

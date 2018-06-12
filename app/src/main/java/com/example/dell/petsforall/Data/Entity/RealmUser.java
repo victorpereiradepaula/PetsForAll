@@ -1,4 +1,4 @@
-package com.example.dell.petsforall.Data.Entitie;
+package com.example.dell.petsforall.Data.Entity;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
@@ -13,6 +13,12 @@ public class RealmUser extends RealmObject {
     @PrimaryKey
     public Long id;
     public String name;
-    public RealmList<RealmAnimal> animals;
+    public String email;
+    public String password;
+    public String phone;
+    public Double latitude;
+    public Double longitude;
+
+    public RealmList<RealmPet> pets;
 
 }
